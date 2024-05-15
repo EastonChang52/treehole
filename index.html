@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言和聊天树洞</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        #messages {
+            list-style-type: none;
+            padding: 0;
+        }
+        #messages li {
+            padding: 8px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #chatbox {
+            display: flex;
+            margin-top: 20px;
+        }
+        #chatbox input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #chatbox button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>留言和聊天树洞</h1>
+    <ul id="messages"></ul>
+    <div id="chatbox">
+        <input id="messageInput" type="text" placeholder="输入你的留言...">
+        <button onclick="sendMessage()">发送</button>
+    </div>
+    <script>
+        const messages = [];
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                messages.push(messageText);
+                updateMessages();
+                messageInput.value = '';
+            }
+        }
+
+        function updateMessages() {
+            const messagesList = document.getElementById('messages');
+            messagesList.innerHTML = '';
+            messages.forEach(message => {
+                const messageItem = document.createElement('li');
+                messageItem.textContent = message;
+                messagesList.appendChild(messageItem);
+            });
+        }
+    </script>
+</body>
+</html>
